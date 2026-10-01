@@ -1,0 +1,74 @@
+<div class="container-fluid min-vh-100 bg-dark text-light py-4">
+
+    <div class="container py-4">
+
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="mb-0 text-success font-monospace">
+                &lt;/&gt; Anusua's ChatBot
+            </h3>
+
+            <button class="btn btn-outline-success btn-sm" routerLink="/">
+                Back
+            </button>
+        </div>
+
+
+        <!-- Chat Area -->
+        <div
+            class="bg-black border border-success rounded p-3 mb-3 font-monospace"
+            style="height: 70vh; overflow-y: auto;"
+        >
+
+            <div
+                *ngFor="let message of messages"
+                class="mb-3"
+                [class.text-end]="message.send === 'user'"
+            >
+
+                <!-- Sender -->
+                <span
+                    class="badge"
+                    [class.bg-success]="message.send === 'user'"
+                    [class.bg-info]="message.send !== 'user'"
+                >
+                    {{ message.send === 'user' ? 'You' : 'AI' }}
+                </span>
+
+                <!-- Message -->
+                <p
+                    class="mt-2 mb-0"
+                    [class.text-success]="message.send === 'user'"
+                    [class.text-info]="message.send !== 'user'"
+                >
+                    {{ message.text }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Input -->
+        <div class="input-group">
+
+            <input
+                type="text"
+                class="form-control bg-dark text-light border-success font-monospace"
+                placeholder="Type your message..."
+                [(ngModel)]="prompt"
+            />
+
+            <button
+                class="btn btn-success font-monospace"
+                (click)="generateChat(prompt)"
+                [disabled]="!prompt?.trim()"
+            >
+                &gt; SEND
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

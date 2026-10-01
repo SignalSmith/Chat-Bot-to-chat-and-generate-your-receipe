@@ -1,0 +1,83 @@
+.hero {
+  background: radial-gradient(circle at 20% 20%, #0f2a1d, #090d0b 65%);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Glass card */
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(32, 201, 151, 0.35);
+  box-shadow: 0 0 40px rgba(25, 135, 84, 0.25);
+}
+
+/* Shimmering gradient title */
+.title {
+  background: linear-gradient(90deg, #20c997, #0dcaf0, #20c997);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 4s linear infinite;
+}
+@keyframes shine {
+  to { background-position: 200% center; }
+}
+
+/* Drifting blobs */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.45;
+  animation: drift 14s ease-in-out infinite alternate;
+}
+.blob-1 { width: 320px; height: 320px; background: #198754; top: -80px;  left: -80px; }
+.blob-2 { width: 260px; height: 260px; background: #0dcaf0; bottom: -60px; right: -40px; animation-delay: -4s; }
+.blob-3 { width: 200px; height: 200px; background: #6f42c1; top: 50%; left: 60%; animation-delay: -8s; }
+@keyframes drift {
+  to { transform: translate(60px, 40px) scale(1.25); }
+}
+
+/* Floating emojis */
+.float {
+  position: absolute;
+  font-size: 2.6rem;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 0 12px rgba(32, 201, 151, 0.6));
+  animation: floaty 6s ease-in-out infinite;
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50%      { transform: translateY(-34px) rotate(8deg); }
+}
+.f1 { top: 12%; left: 10%; animation-delay: 0s; }
+.f2 { top: 20%; right: 12%; animation-delay: -1s; animation-duration: 7s; }
+.f3 { bottom: 18%; left: 14%; animation-delay: -2s; animation-duration: 5s; }
+.f4 { bottom: 12%; right: 16%; animation-delay: -3s; animation-duration: 8s; }
+.f5 { top: 55%; left: 4%;  animation-delay: -4s; font-size: 3.2rem; }
+.f6 { top: 8%;  left: 48%; animation-delay: -5s; animation-duration: 9s; }
+.f7 { bottom: 6%; left: 46%; animation-delay: -2.5s; }
+.f8 { top: 60%; right: 5%; animation-delay: -1.5s; font-size: 3rem; }
+
+/* Pulsing button glow */
+.glow {
+  animation: pulse 2.5s ease-in-out infinite;
+  transition: transform 0.2s;
+}
+.glow:hover { transform: translateY(-3px) scale(1.05); }
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(32, 201, 151, 0); }
+  50%      { box-shadow: 0 0 22px rgba(32, 201, 151, 0.7); }
+}
+
+/* Respect users who turn off motion */
+@media (prefers-reduced-motion: reduce) {
+  .blob, .float, .glow, .title { animation: none; }
+}
